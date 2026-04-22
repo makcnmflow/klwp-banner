@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>killwinparty background</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #f5f5dc; 
+            font-family: 'Helvetica', sans-serif;
+        }
+
+        .marquee-wrapper {
+            display: flex;
+            flex-direction: column;
+            transform: rotate(-15deg) scale(1.5); 
+            user-select: none;
+            margin-top: -10%;
+        }
+
+        .row {
+            display: flex;
+            white-space: nowrap;
+            font-size: 50px; 
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4); 
+            line-height: 1.2;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .row span {
+            display: inline-block;
+            padding-right: 60px; 
+            animation: scroll 15s linear infinite;
+        }
+
+        .row:nth-child(even) span {
+            animation-direction: reverse;
+            color: rgba(255, 255, 255, 0.2);
+            animation-duration: 20s;
+        }
+    </style>
+</head>
+<body>
+
+<div class="marquee-wrapper" id="wrapper">
+    </div>
+
+<script>
+    const wrapper = document.getElementById('wrapper');
+    const nick = "kilopartyz ";
+    const rowsCount = 20;
+
+    for (let i = 0; i < rowsCount; i++) {
+        const row = document.createElement('div');
+        row.className = 'row';
+        const span = document.createElement('span');
+        span.innerText = nick.repeat(15); 
+        row.appendChild(span);
+        wrapper.appendChild(row);
+    }
+
+    const spans = document.querySelectorAll('.row span');
+    spans.forEach(span => {
+        span.innerHTML += span.innerHTML; 
+    });
+</script>
+
+</body>
+</html>
